@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  audio-brain:
+    build:
+      context: ./audio_brain
+      dockerfile: Dockerfile
+    container_name: dj_visualizer_brain
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./audio_brain:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - APP_ENV=dev
+      - USE_SIMULATED_AUDIO=true
+      - ASSET_GENERATION_MODE=online_free  # Options: online_free, online_paid, local
+
+  visualizer:
+    build:
+      context: ./visualizer
+      dockerfile: Dockerfile
+    container_name: dj_visualizer_web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./visualizer:/app
+      - /app/node_modules
+    depends_on:
+      - audio-brain
