@@ -28,7 +28,7 @@ async function main() {
 
   // 2. Initialize Components
   const signalManager = new SignalManager(WS_URL);
-  const assetManager = new AssetManager('http://localhost:8000'); // Hardcoded for dev
+  const assetManager = new AssetManager(API_URL);
   const engine = new VisualizerEngine(canvas);
 
   try {
