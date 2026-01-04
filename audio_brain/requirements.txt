@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+websockets
+numpy
+scipy
+requests
+pyaudio
+python-dotenv
+aiofiles
